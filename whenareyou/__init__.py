@@ -18,18 +18,22 @@ def cached_json_get(url):
     return requests.get(url).json()
 
 
+def get_tz(lat, lng):
+    tzinfo = cached_json_get(
+        'https://maps.googleapis.com/maps/api/timezone/json?location={0},'
+        '{1}&timestamp=0'.format(
+            lat, lng
+        )
+    )
+    return timezone(tzinfo['timeZoneId'])
+
+
 def whenareyou(address):
     latlong = cached_json_get(
         LONG_LAT_URL.format(quote_plus(address))
     )['results'][0]['geometry']['location']
 
-    tzinfo = cached_json_get(
-        'https://maps.googleapis.com/maps/api/timezone/json?location={0},'
-        '{1}&timestamp=0'.format(
-            latlong['lat'], latlong['lng']
-        )
-    )
-    return timezone(tzinfo['timeZoneId'])
+    return get_tz(latlong['lat'], latlong['lng'])
 
 
 if __name__ == '__main__':
