@@ -52,7 +52,11 @@ def whenareyou(address):
 
 
 def whenareyou_apt(airport):
-    return timezone(airports_dict[airport]['tz_olson'])
+    if not airports_dict[airport]['tz_olson']=='\\N'
+        return timezone(airports_dict[airport]['tz_olson'])
+    else:
+        return get_tz(airports_dict[airport]['lat'],
+                      airports_dict[airport]['lng'])
 
 
 if __name__ == '__main__':
