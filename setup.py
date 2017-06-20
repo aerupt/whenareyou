@@ -12,7 +12,7 @@ with open('README.rst') as readme:
 
 setup(
     name='whenareyou',
-    version='0.2.1',
+    version='0.3.1',
     description='Gets the timezone of any location in the world',
     long_description=long_description,
     url='https://github.com/aerupt/whenareyou',
