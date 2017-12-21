@@ -16,7 +16,7 @@ airports_csv_path = os.path.join(os.path.dirname(__file__), 'airports.csv')
 
 airports_dict = {}
 
-with open(airports_csv_path) as csvfile:
+with open(airports_csv_path, encoding="utf-8") as csvfile:
     airports_reader = csv.DictReader(
         csvfile,
         fieldnames=['id', 'name', 'city', 'country', 'iata', 'icao', 'lat',
