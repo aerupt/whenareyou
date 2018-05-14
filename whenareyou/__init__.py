@@ -7,7 +7,7 @@ import csv
 from urllib.parse import quote_plus
 from pytz import timezone
 from tzwhere import tzwhere
-from django.conf import GOOGLE_MAPS_API_KEY
+from django.conf.settings import GOOGLE_MAPS_API_KEY
     
 
 LONG_LAT_URL = ('https://maps.googleapis.com/maps/api/geocode/json?key={0}&address={1}'
