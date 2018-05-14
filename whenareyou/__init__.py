@@ -13,20 +13,6 @@ from django.conf.settings import GOOGLE_MAPS_API_KEY
 LONG_LAT_URL = ('https://maps.googleapis.com/maps/api/geocode/json?key={0}&address={1}'
                 '&sensor=false')
 
-airports_csv_path = os.path.join(os.path.dirname(__file__), 'airports.csv')
-
-airports_dict = {}
-
-with open(airports_csv_path) as csvfile:
-    airports_reader = csv.DictReader(
-        csvfile,
-        fieldnames=['id', 'name', 'city', 'country', 'iata', 'icao', 'lat',
-                    'lng', 'alt', 'tz', 'dst', 'tz_olson'],
-        restkey='info')
-    for row in airports_reader:
-        airports_dict[row['iata']] = row
-
-
 tzw = tzwhere.tzwhere()
 
 
@@ -53,21 +39,6 @@ def whenareyou(address):
     )['results'][0]['geometry']['location']
 
     return get_tz(latlong['lat'], latlong['lng'])
-
-
-def whenareyou_apt(airport):
-    if not airports_dict[airport]['tz_olson']=='\\N':
-        return timezone(airports_dict[airport]['tz_olson'])
-    else:
-        tzinfo = get_tz(float(airports_dict[airport]['lat']),
-                        float(airports_dict[airport]['lng']))
-        if tzinfo:
-            return tzinfo
-        else:
-            tot_offset = float(airports_dict[airport]['tz'])*3600
-            return tz.tzoffset(airports_dict[airport]['name'] + ' ' +
-                               airports_dict[airport]['city'], tot_offset)
-
 
 
 if __name__ == '__main__':
