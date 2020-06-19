@@ -27,3 +27,8 @@ This is how you use it:
 
     In [6]: tz.localize(datetime(2002, 10, 27, 6, 0, 0)).isoformat()
     Out[6]: '2002-10-27T06:00:00+01:00'
+
+Contributions
+-------------
+
+Please note that I've been founding some companies since starting this project and I don't have enough time to work on it. If you'd like to take over maintenance of this project or you need small contributions to be reviewed, please contact me at lasse@viper.dev .
