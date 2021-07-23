@@ -1,7 +1,7 @@
 This Package is No Longer Maintained
 ==========
 
-**Please consider using <https://github.com/MrFuppes/whenareyou> instead!**
+**Please consider using https://github.com/MrFuppes/whenareyou instead!**
 
 whenareyou
 ==========
