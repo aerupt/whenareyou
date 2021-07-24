@@ -7,9 +7,10 @@ import csv
 from urllib.parse import quote_plus
 from pytz import timezone
 from tzwhere import tzwhere
+from django.conf.settings import GOOGLE_MAPS_API_KEY
+    
 
-
-LONG_LAT_URL = ('https://maps.googleapis.com/maps/api/geocode/json?address={0}'
+LONG_LAT_URL = ('https://maps.googleapis.com/maps/api/geocode/json?key={0}&address={1}'
                 '&sensor=false')
 
 airports_csv_path = os.path.join(os.path.dirname(__file__), 'airports.csv')
@@ -48,7 +49,7 @@ def get_tz(lat, lng):
 
 def whenareyou(address):
     latlong = cached_json_get(
-        LONG_LAT_URL.format(quote_plus(address))
+        LONG_LAT_URL.format(GOOGLE_MAPS_API_KEY, quote_plus(address))
     )['results'][0]['geometry']['location']
 
     return get_tz(latlong['lat'], latlong['lng'])
